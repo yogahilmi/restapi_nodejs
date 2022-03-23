@@ -25,8 +25,7 @@ app.get("/api/products", (req, res) => {
   let sql = "SELECT * FROM tbl_product";
   let query = conn.query(sql, (err, results) => {
     if (err) throw err;
-    res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    res.json({ status: 200, error: null, data: results });
   });
 });
 
@@ -35,8 +34,7 @@ app.get("/api/products/:id", (req, res) => {
   let sql = "SELECT * FROM tbl_product WHERE product_id=" + req.params.id;
   let query = conn.query(sql, (err, results) => {
     if (err) throw err;
-    res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify({ status: 200, error: null, data: results }));
+    res.json({ status: 200, error: null, data: results });
   });
 });
 
@@ -49,8 +47,7 @@ app.post("/api/products", (req, res) => {
   let sql = "INSERT INTO tbl_product SET ?";
   let query = conn.query(sql, data, (err, results) => {
     if (err) throw err;
-    res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify({ status: 200, error: null, data: results }));
+    res.json({ status: 200, error: null, data: results });
   });
 });
 
@@ -65,8 +62,7 @@ app.put("/api/products/:id", (req, res) => {
     req.params.id;
   let query = conn.query(sql, (err, results) => {
     if (err) throw err;
-    res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify({ status: 200, error: null, data: results }));
+    res.json({ status: 200, error: null, data: results });
   });
 });
 
@@ -75,8 +71,7 @@ app.delete("/api/products/:id", (req, res) => {
   let sql = "DELETE FROM tbl_product WHERE product_id=" + req.params.id + "";
   let query = conn.query(sql, (err, results) => {
     if (err) throw err;
-    res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify({ status: 200, error: null, data: results }));
+    res.json({ status: 200, error: null, data: results });
   });
 });
 
